@@ -1,4 +1,5 @@
 package ru.netology.services;
+
 public class StatsService {
 
     public long sumAllSales(long[] sales) {
@@ -11,13 +12,8 @@ public class StatsService {
     }
 
     public long medianMonthSales(long[] sales) {
-        long allSales = 0;
-        long medianSales = 0;
 
-        for (int i = 0; i < sales.length; i++) {
-            allSales = allSales + sales[i];
-        }
-        medianSales = allSales / sales.length;
+        long medianSales = sumAllSales(sales) / sales.length;
 
         return medianSales;
     }
@@ -46,14 +42,10 @@ public class StatsService {
     }
 
     public int belowMonthSales(long[] sales) {
-        long allSales = 0;
-        long medianSales = 0;
+
+        long medianSales = medianMonthSales(sales);
         int monthsBelow = 0;
 
-        for (int i = 0; i < sales.length; i++) {
-            allSales = allSales + sales[i];
-        }
-        medianSales = allSales / sales.length;
         for (int i = 0; i < sales.length; i++) {
             if (sales[i] < medianSales) {
                 monthsBelow = monthsBelow + 1;
@@ -63,14 +55,10 @@ public class StatsService {
     }
 
     public int aboveMonthSales(long[] sales) {
-        long allSales = 0; // сумма продаж
-        long medianSales = 0;
+
+        long medianSales = medianMonthSales(sales);
         int monthsAbove = 0;
 
-        for (int i = 0; i < sales.length; i++) {
-            allSales = allSales + sales[i];
-        }
-        medianSales = allSales / sales.length;
         for (int i = 0; i < sales.length; i++) {
             if (sales[i] > medianSales) {
                 monthsAbove = monthsAbove + 1;
